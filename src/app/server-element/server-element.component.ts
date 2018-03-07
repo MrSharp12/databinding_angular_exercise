@@ -11,8 +11,9 @@ import { Component, OnInit, Input } from '@angular/core';
 //by default, all properties of components are only accessable inside these components, not outside
 //you have to be implicit to what you want shown to the outside
 //add decorator @Input() and make sure it is in the inport list
+//you can add an alias to a component
 export class ServerElementComponent implements OnInit {
-  @Input() element: {type: string, name: string, content: string};
+  @Input('srvElement') element: {type: string, name: string, content: string};
   constructor() { }
 
   ngOnInit() {
