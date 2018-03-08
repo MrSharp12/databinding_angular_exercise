@@ -1,5 +1,10 @@
 <div class="container">
-  <app-cockpit></app-cockpit>
+  <!-- to inform our app component of the event, in this case server creation -->
+  <!-- bind it so that it listens to that event, onServerAdded -->
+  <app-cockpit 
+    (serverCreated)="onServerAdded($event)"
+    (blueprintCreated)="onBlueprintAdded($event)"
+    ></app-cockpit>
   <hr>
   <div class="row">
     <div class="col-xs-12">
