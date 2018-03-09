@@ -1,4 +1,22 @@
-import { Component, OnInit, Input, ViewEncapsulation  } from '@angular/core';
+import { 
+  Component, 
+  OnInit, 
+  Input, 
+  ViewEncapsulation, 
+  OnChanges,
+  SimpleChanges,
+  DoCheck,
+  AfterContentInit,
+  AfterContentChecked,
+  AfterViewInit,
+  AfterViewChecked,
+  OnDestroy 
+} from '@angular/core';
+
+
+
+
+
 
 
 @Component({
@@ -7,18 +25,58 @@ import { Component, OnInit, Input, ViewEncapsulation  } from '@angular/core';
   styleUrls: ['./server-element.component.css'],
   encapsulation: ViewEncapsulation.Emulated
 })
-//created element to represent the server referrenced in the server-element.html
-//defined the element type definitions
-//why can't we access the element from the outside
-//by default, all properties of components are only accessable inside these components, not outside
-//you have to be implicit to what you want shown to the outside
-//add decorator @Input() and make sure it is in the inport list
-//you can add an alias to a component
-export class ServerElementComponent implements OnInit {
+
+//added OnChanges to the implements, good practice to do if you add that hook below
+export class ServerElementComponent implements
+  OnInit,
+  OnChanges,
+  DoCheck,
+  AfterContentInit,
+  AfterContentChecked,
+  AfterViewInit,
+  AfterViewChecked,
+  OnDestroy {
   @Input('srvElement') element: {type: string, name: string, content: string};
-  constructor() { }
+  @Input() name: string;
+
+  //we'll see the log in the beginning
+  // and every other time the server elements are created
+  //because all of the hooks are executed, because its a brand new instance
+  constructor() {
+    console.log('constructor called!');
+   }
+
+   //this is the only hook that receives an arugment
+   ngOnChanges(changes: SimpleChanges) {
+    console.log('ngOnChanges called!');
+    console.log(changes);
+   }
 
   ngOnInit() {
+    console.log('ngOnInit called!');
   }
 
+  ngDoCheck() {
+    console.log('ngDoCheck called!');
+  }
+
+  ngAfterContentInit() {
+    console.log('ngAfterContentInit called!');
+  }
+
+  ngAfterContentChecked() {
+    console.log('ngAfterContentChecked called!');
+  }
+
+  ngAfterViewInit() {
+    console.log('ngAfterViewInit called!');
+  }
+
+  ngAfterViewChecked() {
+    console.log('ngAfterViewChecked called!');
+  }
+
+  ngOnDestroy() {
+    console.log('ngOnDestroy called!');
+  }
 }

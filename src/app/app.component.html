@@ -1,6 +1,4 @@
 <div class="container">
-  <!-- to inform our app component of the event, in this case server creation -->
-  <!-- bind it so that it listens to that event, onServerAdded -->
   <app-cockpit 
     (serverCreated)="onServerAdded($event)"
     (bpCreated)="onBlueprintAdded($event)"
@@ -8,16 +6,13 @@
   <hr>
   <div class="row">
     <div class="col-xs-12">
-      <!-- we want to access the element from outside -->
-      <!-- so we bind to it, use square brackets and name element equals the element name -->
+      <button class="btn btn-primary" (click)="onChangeFirst()">Change first Element</button>
+      <button class="btn btn-danger" (click)="onDestroyFirst()">Destroy first Component</button>
       <app-server-element 
         *ngFor="let serverElement of serverElements"
-        [srvElement]="serverElement">
+        [srvElement]="serverElement"
+        [name]="serverElement.name">
         <p>
-          <!-- we are not seeing the content below -->
-          <!-- that's because by default, everything you place between your opening and closing component tags -->
-          <!-- is removed from the DOM -->
-          
           <strong *ngIf="serverElement.type === 'server'" style="color: red">{{ serverElement.content }}</strong>
           <em *ngIf="serverElement.type === 'blueprint'">{{ serverElement.content }}</em>
         </p>

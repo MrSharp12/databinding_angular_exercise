@@ -1,11 +1,8 @@
 <div
         class="panel panel-default">
-        <div class="panel-heading">{{ element.name }}</div>
+        <!-- <div class="panel-heading">{{ element.name }}</div> -->
+        <div class="panel-heading">{{ name }}</div>
         <div class="panel-body">
-          <!-- in order to see this content in another component -->
-          <!-- add ng-content.  This serves as a hook you can place in your component -->
-          <!-- to mark the place for Angular where it should add any content -->
-          <!-- it finds between the opening and closing tags in another component-->
           <ng-content></ng-content>
         </div>
       </div>
