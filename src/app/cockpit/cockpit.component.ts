@@ -1,4 +1,4 @@
-import { Component, OnInit, EventEmitter, Output } from '@angular/core';
+import { Component, OnInit, EventEmitter, Output, ViewChild, ElementRef } from '@angular/core';
 
 
 
@@ -7,20 +7,15 @@ import { Component, OnInit, EventEmitter, Output } from '@angular/core';
   templateUrl: './cockpit.component.html',
   styleUrls: ['./cockpit.component.css']
 })
-//we had to add serverCreated and blueprintCreated properties
-//because they were events that were emmited in the app component html
-//inside the app-cockpit tag
-//EventEmitter is a generic type, indicated in ts by the <>
-//inside the <>, we add the type of data that we are going to emit
-//must add () at the end of the emitter, to call the call the EventEmitter construcor
-//and create a new EventEmitter object, which is stored in serverCreated
-//we add @Output() because we are passing something OUT of the component
-//we're passing our own event out of the component
+//sometimes you want to get access to local reference or any element, before you call the method
+//@ViewChild() can achieve this, must pass in the arugment the selector of the element
+//local reference is fetched through @ViewChild
 export class CockpitComponent implements OnInit {
   @Output() serverCreated = new EventEmitter<{serverName: string, serverContent: string}>();
   @Output('bpCreated') blueprintCreated = new EventEmitter<{serverName: string, serverContent: string}>();
   // newServerName = '';
-  newServerContent = '';
+  // newServerContent = '';
+  @ViewChild('serverContentInput') serverContentInput: ElementRef;
 
   constructor() { }
 
@@ -33,16 +28,17 @@ export class CockpitComponent implements OnInit {
   //arguemenf for onAddServer, add HTMLInputElement
   //so we know the value is there
   onAddServer(nameInput: HTMLInputElement) {
+    
     this.serverCreated.emit({
       serverName: nameInput.value, 
-      serverContent: this.newServerContent
+      serverContent: this.serverContentInput.nativeElement.value
     });
   }
 
   onAddBlueprint(nameInput: HTMLInputElement) {
     this.blueprintCreated.emit({
       serverName: nameInput.value, 
-      serverContent: this.newServerContent
+      serverContent: this.serverContentInput.nativeElement.value
     });
   }
 

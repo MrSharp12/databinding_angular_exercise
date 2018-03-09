@@ -4,19 +4,18 @@
       <p>Add new Servers or blueprints!</p>
       <label>Server Name</label>
       <!-- <input type="text" class="form-control" [(ngModel)]="newServerName"> -->
-      <!-- placing a local reference on the element -->
-      <!-- a local element can be placed on any html element -->
-      <!-- add with a # and any name of your choice -->
-      <!-- this reference will hold a reference to this element -->
-      <!-- not to the value, but to the whole html element with all its properties -->
-      <!-- you can use a reference everywhere in your template, but only in it's template -->
-      <!-- not in ts, only in the template -->
+   
       <input 
         type="text" 
         class="form-control"
         #serverNameInput>
       <label>Server Content</label>
-      <input type="text" class="form-control" [(ngModel)]="newServerContent">
+      <!-- <input type="text" class="form-control" [(ngModel)]="newServerContent"> -->
+      <input 
+        type="text" 
+        class="form-control" 
+        #serverContentInput>
+      <br>
       <br>
       <button
         class="btn btn-primary"
