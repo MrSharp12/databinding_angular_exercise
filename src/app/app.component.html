@@ -12,7 +12,16 @@
       <!-- so we bind to it, use square brackets and name element equals the element name -->
       <app-server-element 
         *ngFor="let serverElement of serverElements"
-        [srvElement]="serverElement"></app-server-element>
+        [srvElement]="serverElement">
+        <p>
+          <!-- we are not seeing the content below -->
+          <!-- that's because by default, everything you place between your opening and closing component tags -->
+          <!-- is removed from the DOM -->
+          
+          <strong *ngIf="serverElement.type === 'server'" style="color: red">{{ serverElement.content }}</strong>
+          <em *ngIf="serverElement.type === 'blueprint'">{{ serverElement.content }}</em>
+        </p>
+      </app-server-element>
     </div>
   </div>
 </div>
