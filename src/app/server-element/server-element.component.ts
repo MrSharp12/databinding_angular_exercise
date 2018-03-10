@@ -10,7 +10,9 @@ import {
   AfterContentChecked,
   AfterViewInit,
   AfterViewChecked,
-  OnDestroy 
+  OnDestroy,
+  ViewChild,
+  ElementRef 
 } from '@angular/core';
 
 
@@ -38,6 +40,7 @@ export class ServerElementComponent implements
   OnDestroy {
   @Input('srvElement') element: {type: string, name: string, content: string};
   @Input() name: string;
+  @ViewChild('heading') header: ElementRef
 
   //we'll see the log in the beginning
   // and every other time the server elements are created
@@ -54,6 +57,7 @@ export class ServerElementComponent implements
 
   ngOnInit() {
     console.log('ngOnInit called!');
+    console.log('Text Content: ' + this.header.nativeElement.textContent);
   }
 
   ngDoCheck() {
@@ -67,9 +71,11 @@ export class ServerElementComponent implements
   ngAfterContentChecked() {
     console.log('ngAfterContentChecked called!');
   }
-
+//AfterviewInit gives you access to the template elements
+//before this hook has been reached, you can't access the template elements
   ngAfterViewInit() {
     console.log('ngAfterViewInit called!');
+    console.log('Text Content: ' + this.header.nativeElement.textContent);
   }
 
   ngAfterViewChecked() {
